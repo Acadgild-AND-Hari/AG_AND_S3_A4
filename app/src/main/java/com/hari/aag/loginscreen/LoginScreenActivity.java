@@ -1,6 +1,7 @@
 package com.hari.aag.loginscreen;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,8 +17,10 @@ public class LoginScreenActivity extends AppCompatActivity
         implements View.OnClickListener {
 
     private static final String LOG_TAG = LoginScreenActivity.class.getSimpleName();
+    private static final String PREFS_NAME = LoginScreenActivity.class.getSimpleName();
 
     private String usernameStr;
+    private String passwordStr;
     private boolean isLoggedInBool = false;
 
     @BindView(R.id.id_username) EditText usernameET;
@@ -34,6 +37,7 @@ public class LoginScreenActivity extends AppCompatActivity
 
         Log.d(LOG_TAG, "Inside - onCreate");
         isLoggedInBool = Utility.readValuesFromPrefs(this);
+        readValuesFromPrefs();
         updateValueToUI();
     }
 
@@ -42,6 +46,7 @@ public class LoginScreenActivity extends AppCompatActivity
         super.onPause();
         Log.d(LOG_TAG, "Inside - onPause");
         Utility.saveValuesToPrefs(this, isLoggedInBool);
+        saveValuesToPrefs();
     }
 
     @Override
@@ -49,6 +54,7 @@ public class LoginScreenActivity extends AppCompatActivity
         super.onResume();
         Log.d(LOG_TAG, "Inside - onResume");
         isLoggedInBool = Utility.readValuesFromPrefs(this);
+        readValuesFromPrefs();
         updateValueToUI();
     }
 
@@ -73,6 +79,7 @@ public class LoginScreenActivity extends AppCompatActivity
 
                     isLoggedInBool = !isLoggedInBool;
                     usernameStr = usernameStr1;
+                    passwordStr = passwordStr1;
                     Utility.saveValuesToPrefs(this, isLoggedInBool);
                     updateValueToUI();
                 }
@@ -86,6 +93,36 @@ public class LoginScreenActivity extends AppCompatActivity
             if (usernameStr != null && !usernameStr.isEmpty())
                 logoutIntent.putExtra(Utility.USER_NAME, usernameStr);
             startActivity(logoutIntent);
+        } else {
+            usernameET.setText(usernameStr);
+            passwordET.setText(passwordStr);
         }
     }
+
+    private void readValuesFromPrefs(){
+        SharedPreferences mySharedPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        usernameStr = mySharedPrefs.getString(Utility.USER_NAME, "");
+        passwordStr = mySharedPrefs.getString(Utility.PASSWORD, "");
+
+        Log.d(LOG_TAG, "Values Read from Prefs.");
+        dumpPrefValues();
+    }
+
+    private void saveValuesToPrefs(){
+        SharedPreferences.Editor prefsEditor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+
+        prefsEditor.putString(Utility.USER_NAME, usernameStr);
+        prefsEditor.putString(Utility.PASSWORD, passwordStr);
+        prefsEditor.commit();
+
+        Log.d(LOG_TAG, "Values Saved to Prefs.");
+        dumpPrefValues();
+    }
+
+    private void dumpPrefValues(){
+        Log.d(LOG_TAG, Utility.USER_NAME + " - " + usernameStr);
+        Log.d(LOG_TAG, Utility.PASSWORD + " - " + passwordStr);
+    }
+
 }

@@ -15,6 +15,7 @@ class Utility {
     private static final String PREFS_NAME = Utility.class.getSimpleName();
 
     static final String USER_NAME = "username";
+    static final String PASSWORD = "password";
     private static final String IS_LOGGED_IN = "isLoggedIn";
 
     static boolean readValuesFromPrefs(Context context){
