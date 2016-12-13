@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Login Screen</string>
-    <string name="str_email">E-mail</string>
+    <string name="logout_screen_name">Logout Screen</string>
+    <string name="str_username">Username</string>
     <string name="str_password">Password</string>
     <string name="str_login">LOGIN</string>
     <string name="str_logout">LOGOUT</string>
-    <string name="str_sign_up">Not a member? Sign up now.</string>
-    <string name="str_hello">Hello, You are logged in now.</string>
+    <string name="str_hello">Hello, %s. You are logged in now.</string>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login_screen"
+    android:id="@+id/activity_logout_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,26 +9,20 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".LoginScreenActivity">
+    tools:context=".LogoutScreenActivity">
 
-    <EditText
-        android:id="@+id/id_username"
+    <TextView
+        android:id="@+id/id_user_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/str_username"
-        android:inputType="text"
-        android:layout_marginTop="@dimen/email_top_margin"/>
-
-    <EditText
-        android:id="@+id/id_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textWebPassword"
-        android:hint="@string/str_password" />
+        android:gravity="center"
+        android:text="@string/str_hello"
+        android:paddingBottom="@dimen/user_info_padding"
+        android:paddingTop="@dimen/user_info_padding" />
 
     <Button
-        android:id="@+id/id_login"
+        android:id="@+id/id_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/str_login" />
+        android:hint="@string/str_logout" />
 </LinearLayout>

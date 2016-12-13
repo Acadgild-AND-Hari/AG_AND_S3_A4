@@ -15,6 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LogoutScreenActivity"
+            android:label="@string/logout_screen_name"/>
     </application>
 
 </manifest>
